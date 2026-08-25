@@ -31,6 +31,7 @@ const products = [
 let cart = [];
 let transactions = [];
 let isAuthModeSignIn = true;
+let pendingSectionId = null;
 // Local storage keys
 const LS_USERS = 'iv_users';
 const LS_CURRENT = 'iv_currentUser';
@@ -256,6 +257,16 @@ function showMessage(type, text, timeout = 5000) {
 
 // Single Page Navigation Switcher
 function showSection(sectionId) {
+  if (sectionId !== 'home' && !getCurrentUser()) {
+    pendingSectionId = sectionId;
+    showMessage('info', 'Please sign in or create an account to continue.');
+    const authModalEl = document.getElementById('authModal');
+    if (authModalEl && window.bootstrap) {
+      bootstrap.Modal.getOrCreateInstance(authModalEl).show();
+    }
+    return;
+  }
+
   document.querySelectorAll(".page-section").forEach(sec => sec.classList.remove("active-section"));
   const targetSection = document.getElementById(sectionId);
   if (targetSection) {
@@ -515,17 +526,24 @@ function handleAuth(event) {
   setCurrentUser(user.email);
   showMessage('success', 'Logged in successfully!');
   if (modalInstance) modalInstance.hide();
+  if (pendingSectionId) {
+    const sectionToOpen = pendingSectionId;
+    pendingSectionId = null;
+    showSection(sectionToOpen);
+  }
 }
 
-// Contact form submission handler (no backend) - shows confirmation and hides modal
+// Open a pre-filled email so support messages reach the site owner.
 function handleContactSubmit(event) {
   event.preventDefault();
-  const name = document.getElementById('contactName').value;
-  const email = document.getElementById('contactEmail').value;
-  const message = document.getElementById('contactMessage').value;
+  const name = document.getElementById('contactName')?.value?.trim() || '';
+  const email = document.getElementById('contactEmail')?.value?.trim() || '';
+  const message = document.getElementById('contactMessage')?.value?.trim() || '';
+  const subject = `BobForge Support Message from ${name}`;
+  const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
 
-  console.log('Contact message', { name, email, message });
-  showMessage('success', 'Thanks, ' + name + '. Your message has been sent. We will respond to ' + email + ' soon.');
+  window.location.href = `mailto:boluamosu4@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  showMessage('success', 'Your email app is opening with the support message ready to send.');
 
   const contactModalEl = document.getElementById('contactModal');
   const modalInstance = bootstrap.Modal.getInstance(contactModalEl);
