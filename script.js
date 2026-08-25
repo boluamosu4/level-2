@@ -437,6 +437,7 @@ function movePendingToWishlist() {
 
 function updateCartUI() {
   const cartCountEl = document.getElementById("cartCount");
+  const mobileCartCountEl = document.getElementById("mobileCartCount");
   const cartBodyEl = document.getElementById("cartBody");
   const cartTotalEl = document.getElementById("cartTotal");
 
@@ -444,6 +445,7 @@ function updateCartUI() {
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
   cartCountEl.innerText = totalItems;
+  if (mobileCartCountEl) mobileCartCountEl.innerText = totalItems;
   cartTotalEl.innerText = `₦${totalPrice.toLocaleString()}`;
 
   if (cart.length === 0) {
@@ -504,9 +506,9 @@ function toggleAuthMode() {
   }
 }
 
-function togglePasswordVisibility() {
-  const passwordInput = document.getElementById('authPassword');
-  const toggleButton = document.getElementById('toggleAuthPassword');
+function togglePasswordVisibility(inputId = 'authPassword', buttonId = 'toggleAuthPassword') {
+  const passwordInput = document.getElementById(inputId);
+  const toggleButton = document.getElementById(buttonId);
   const icon = toggleButton?.querySelector('i');
   if (!passwordInput || !toggleButton || !icon) return;
 

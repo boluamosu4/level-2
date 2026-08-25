@@ -58,11 +58,21 @@
               </div>
               <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" id="signupPassword" class="form-control" required />
+                <div class="input-group">
+                  <input type="password" id="signupPassword" class="form-control" required />
+                  <button type="button" class="btn btn-outline-secondary" id="toggleSignupPassword" onclick="togglePasswordVisibility('signupPassword', 'toggleSignupPassword')" aria-label="Show password" title="Show password">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
               </div>
               <div class="mb-3">
                 <label class="form-label">Confirm Password</label>
-                <input type="password" id="signupPasswordConfirm" class="form-control" required />
+                <div class="input-group">
+                  <input type="password" id="signupPasswordConfirm" class="form-control" required />
+                  <button type="button" class="btn btn-outline-secondary" id="toggleSignupPasswordConfirm" onclick="togglePasswordVisibility('signupPasswordConfirm', 'toggleSignupPasswordConfirm')" aria-label="Show password" title="Show password">
+                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
               </div>
               <button type="submit" class="btn btn-red w-100 text-uppercase fw-bold">Create Account</button>
             </form>
