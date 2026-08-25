@@ -1,30 +1,30 @@
 // Sample Gym Gear Inventory Data
 const products = [
-  { id: 1, title: "Pro Rubber Hex Dumbbell (Pair)", price: 45000, rating: 5, image: "images/product-1.svg" },
-  { id: 2, title: "Heavy-Duty Power Rack Station", price: 350000, rating: 5, image: "images/product-2.svg" },
-  { id: 3, title: "Olympic Bumper Plate Set (100kg)", price: 180000, rating: 4, image: "images/product-3.svg" },
-  { id: 4, title: "Commercial Adjustable Bench", price: 95000, rating: 5, image: "images/product-4.svg" },
+  { id: 1, title: "Pro Rubber Hex Dumbbell (Pair)", price: 45000, rating: 5, image: "images/product-1.jpg" },
+  { id: 2, title: "Heavy-Duty Power Rack Station", price: 350000, rating: 5, image: "images/product-2.jpg" },
+  { id: 3, title: "Olympic Bumper Plate Set (100kg)", price: 180000, rating: 4, image: "images/product-3.jpg" },
+  { id: 4, title: "Commercial Adjustable Bench", price: 95000, rating: 5, image: "images/product-4.jpg" },
 
-  { id: 5, title: "Kettlebell 16kg", price: 12000, rating: 4, image: "images/product-5.svg" },
-  { id: 6, title: "Kettlebell 24kg", price: 18000, rating: 4, image: "images/product-6.svg" },
-  { id: 7, title: "Resistance Band Set (5pcs)", price: 4500, rating: 4, image: "images/product-7.svg" },
-  { id: 8, title: "Adjustable Dumbbell (Single)", price: 65000, rating: 5, image: "images/product-8.svg" },
-  { id: 9, title: "EZ Curl Bar", price: 15000, rating: 4, image: "images/product-9.svg" },
-  { id: 10, title: "Lat Pulldown Attachment", price: 45000, rating: 4, image: "images/product-10.svg" },
-  { id: 11, title: "Cable Machine Pulley", price: 22000, rating: 4, image: "images/product-11.svg" },
-  { id: 12, title: "Medicine Ball 10kg", price: 8000, rating: 4, image: "images/product-12.svg" },
-  { id: 13, title: "Battle Rope 50ft", price: 14000, rating: 4, image: "images/product-13.svg" },
-  { id: 14, title: "Plyo Box Set (3-in-1)", price: 25000, rating: 5, image: "images/product-14.svg" },
-  { id: 15, title: "Folding Treadmill", price: 220000, rating: 4, image: "images/product-15.svg" },
-  { id: 16, title: "Stationary Upright Bike", price: 95000, rating: 4, image: "images/product-16.svg" },
-  { id: 17, title: "Rowing Machine (Magnetic)", price: 120000, rating: 4, image: "images/product-17.svg" },
-  { id: 18, title: "Speed Jump Rope", price: 2500, rating: 3, image: "images/product-18.svg" },
-  { id: 19, title: "Hex Trap Bar", price: 75000, rating: 5, image: "images/product-19.svg" },
-  { id: 20, title: "Farmer's Walk Handles (Pair)", price: 30000, rating: 4, image: "images/product-20.svg" },
-  { id: 21, title: "Weightlifting Shoes (Pair)", price: 28000, rating: 4, image: "images/product-21.svg" },
-  { id: 22, title: "Leather Weightlifting Belt", price: 9000, rating: 4, image: "images/product-22.svg" },
-  { id: 23, title: "Gym Flooring Tile (6-pack)", price: 14000, rating: 4, image: "images/product-23.svg" },
-  { id: 24, title: "Compact Smith Machine", price: 280000, rating: 5, image: "images/product-24.svg" }
+  { id: 5, title: "Kettlebell 16kg", price: 12000, rating: 4, image: "images/product-5.jpg" },
+  { id: 6, title: "Kettlebell 24kg", price: 18000, rating: 4, image: "images/product-6.jpg" },
+  { id: 7, title: "Resistance Band Set (5pcs)", price: 4500, rating: 4, image: "images/product-7.jpg" },
+  { id: 8, title: "Adjustable Dumbbell (Single)", price: 65000, rating: 5, image: "images/product-8.jpg" },
+  { id: 9, title: "EZ Curl Bar", price: 15000, rating: 4, image: "images/product-9.jpg" },
+  { id: 10, title: "Lat Pulldown Attachment", price: 45000, rating: 4, image: "images/product-10.jpg" },
+  { id: 11, title: "Cable Machine Pulley", price: 22000, rating: 4, image: "images/product-11.jpg" },
+  { id: 12, title: "Medicine Ball 10kg", price: 8000, rating: 4, image: "images/product-12.jpg" },
+  { id: 13, title: "Battle Rope 50ft", price: 14000, rating: 4, image: "images/product-13.jpg" },
+  { id: 14, title: "Plyo Box Set (3-in-1)", price: 25000, rating: 5, image: "images/product-14.jpg" },
+  { id: 15, title: "Folding Treadmill", price: 220000, rating: 4, image: "images/product-15.jpg" },
+  { id: 16, title: "Stationary Upright Bike", price: 95000, rating: 4, image: "images/product-16.jpg" },
+  { id: 17, title: "Rowing Machine (Magnetic)", price: 120000, rating: 4, image: "images/product-17.jpg" },
+  { id: 18, title: "Speed Jump Rope", price: 2500, rating: 3, image: "images/product-18.jpg" },
+  { id: 19, title: "Hex Trap Bar", price: 75000, rating: 5, image: "images/product-19.jpg" },
+  { id: 20, title: "Farmer's Walk Handles (Pair)", price: 30000, rating: 4, image: "images/product-20.jpg" },
+  { id: 21, title: "Weightlifting Shoes (Pair)", price: 28000, rating: 4, image: "images/product-21.jpg" },
+  { id: 22, title: "Leather Weightlifting Belt", price: 9000, rating: 4, image: "images/product-22.jpg" },
+  { id: 23, title: "Gym Flooring Tile (6-pack)", price: 14000, rating: 4, image: "images/product-23.jpg" },
+  { id: 24, title: "Compact Smith Machine", price: 280000, rating: 5, image: "images/product-24.jpg" }
 ];
 
 // App State Management
@@ -214,7 +214,7 @@ function renderLikedItems() {
     return `
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="card product-card h-100 border-0 shadow-sm">
-          <img src="${p.image}" loading="lazy" class="card-img-top" alt="${p.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/500x350?text=Image+Not+Available'">
+            ${renderProductMedia(p)}
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
               <h5 class="card-title fw-bold">${p.title}</h5>
@@ -319,7 +319,7 @@ function renderProducts(items) {
     const cardHtml = `
       <div class="col-12 col-sm-6 col-lg-3">
         <div class="card product-card h-100 border-0 shadow-sm">
-          <img src="${product.image}" loading="lazy" class="card-img-top" alt="${product.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/500x350?text=Image+Not+Available'">
+          ${renderProductMedia(product)}
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
               <h5 class="card-title fw-bold">${product.title}</h5>
@@ -726,4 +726,17 @@ function toggleTheme() {
   const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
   localStorage.setItem(LS_THEME, nextTheme);
   applyTheme(nextTheme);
+}
+
+function renderProductMedia(product) {
+  if (product.id === 11 || product.id === 12) {
+    return `
+      <video class="card-img-top" autoplay muted loop playsinline preload="metadata" poster="images/product-${product.id}.svg" aria-label="${product.title}">
+        <source src="images/product-${product.id}.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    `;
+  }
+
+  return `<img src="${product.image}" loading="lazy" class="card-img-top" alt="${product.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/500x350?text=Image+Not+Available'">`;
 }
