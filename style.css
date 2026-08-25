@@ -5,12 +5,62 @@
   --gym-dark: #111111;
   --gym-white: #ffffff;
   --gym-gray-light: #f8f9fa;
+  --page-background: #ffffff;
+  --surface-background: #ffffff;
+  --surface-muted: #f8f9fa;
+  --border-color: #eeeeee;
+  --text-muted: #6c757d;
 }
 
 body {
-  background-color: var(--gym-white);
+  background-color: var(--page-background);
   color: var(--gym-dark);
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.dark-mode {
+  --page-background: #181818;
+  --surface-background: #242424;
+  --surface-muted: #303030;
+  --border-color: #444444;
+  --text-muted: #b8b8b8;
+  background-color: var(--page-background);
+  color: #f5f5f5;
+}
+
+body.dark-mode .card,
+body.dark-mode .modal-content,
+body.dark-mode .table,
+body.dark-mode .form-control,
+body.dark-mode .input-group .btn-outline-secondary {
+  background-color: var(--surface-background);
+  color: #f5f5f5;
+  border-color: var(--border-color);
+}
+
+body.dark-mode .bg-light,
+body.dark-mode .table-hover > tbody > tr:hover,
+body.dark-mode .form-control.bg-light {
+  background-color: var(--surface-muted) !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode .text-muted {
+  color: var(--text-muted) !important;
+}
+
+body.dark-mode .text-dark {
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode .table {
+  --bs-table-color: #f5f5f5;
+  --bs-table-bg: var(--surface-background);
+  --bs-table-hover-color: #ffffff;
 }
 
 /* Helper Utilities */
@@ -46,6 +96,10 @@ body {
   align-items: center;
 }
 
+body.dark-mode .hero-section {
+  background: linear-gradient(135deg, #181818 0%, #303030 100%);
+}
+
 .hero-image-wrapper {
   max-width: 420px;
   border: 4px solid var(--gym-dark);
@@ -68,6 +122,11 @@ body {
 
 .page-section.active-section {
   display: block;
+  flex: 1;
+}
+
+main {
+  flex: 1;
 }
 
 /* Equipment Card Overrides */

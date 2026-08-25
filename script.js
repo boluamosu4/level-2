@@ -37,10 +37,12 @@ const LS_USERS = 'iv_users';
 const LS_CURRENT = 'iv_currentUser';
 const LS_RATINGS = 'iv_ratings';
 const LS_WISHLIST = 'iv_wishlist';
+const LS_THEME = 'iv_theme';
 let pendingRemoveId = null;
 
 // DOM Load Initialization
 document.addEventListener("DOMContentLoaded", () => {
+  applyTheme(localStorage.getItem(LS_THEME) || 'light');
   loadRatings();
   renderProducts(products);
   updateUserStateUI();
@@ -160,6 +162,29 @@ function addToWishlist(productId) {
   return true;
 }
 
+function toggleWishlistFromStore(productId) {
+  const list = loadWishlist();
+  const alreadyLiked = list.includes(productId);
+
+  if (alreadyLiked) {
+    removeFromWishlist(productId);
+    showMessage('info', 'Item removed from liked items.');
+  } else {
+    addToWishlist(productId);
+    renderLikedItems();
+    showMessage('success', 'Item added to liked items.');
+  }
+
+  const button = document.getElementById(`wishlistBtn-${productId}`);
+  if (button) {
+    button.classList.toggle('btn-red', !alreadyLiked);
+    button.classList.toggle('btn-outline-danger', alreadyLiked);
+    button.innerHTML = alreadyLiked
+      ? '<i class="fa-solid fa-heart me-1"></i> Add To Liked'
+      : '<i class="fa-solid fa-heart me-1"></i> Liked';
+  }
+}
+
 function removeFromWishlist(productId) {
   const list = loadWishlist().filter(id => id !== productId);
   saveWishlist(list);
@@ -272,6 +297,7 @@ function showSection(sectionId) {
   if (targetSection) {
     targetSection.classList.add("active-section");
   }
+  if (sectionId === 'liked') renderLikedItems();
 }
 
 // Render Product Cards
@@ -285,6 +311,7 @@ function renderProducts(items) {
   }
 
   items.forEach(product => {
+    const isLiked = loadWishlist().includes(product.id);
     const starsHtml = Array.from({length:5}).map((_,i) => `
       <span class="rating-star ${i < product.rating ? 'filled' : ''}" onclick="setRating(${product.id}, ${i+1})">★</span>
     `).join('');
@@ -303,8 +330,11 @@ function renderProducts(items) {
             </div>
             <div>
               <div class="price-tag mb-3">₦${product.price.toLocaleString()}</div>
-              <button class="btn btn-red w-100 fw-bold text-uppercase" onclick="addToCart(${product.id})">
+              <button class="btn btn-red w-100 fw-bold text-uppercase mb-2" onclick="addToCart(${product.id})">
                 <i class="fa-solid fa-cart-plus me-1"></i> Add To Cart
+              </button>
+              <button id="wishlistBtn-${product.id}" class="btn ${isLiked ? 'btn-outline-danger' : 'btn-red'} w-100 fw-bold text-uppercase" onclick="toggleWishlistFromStore(${product.id})">
+                <i class="fa-solid fa-heart me-1"></i> ${isLiked ? 'Liked' : 'Add To Liked'}
               </button>
             </div>
           </div>
@@ -431,6 +461,7 @@ function movePendingToWishlist() {
   if (!pendingRemoveId) return;
   const added = addToWishlist(pendingRemoveId);
   performPendingRemove();
+  renderLikedItems();
   if (added) showMessage('success', 'Item moved to liked items.');
   else showMessage('info', 'Item already in liked items.');
 }
@@ -614,7 +645,7 @@ function initiatePayment() {
   }
 
   const handler = PaystackPop.setup({
-    key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxx', // Replace with your real Paystack Test Public Key
+    key: 'pk_test_8889cf42b03b1813c732fcfda20a316bd8260555', // Replace with your real Paystack Test Public Key
     email: 'customer@bobforge.com',
     amount: totalPrice * 100, // Amount in kobo
     currency: 'NGN',
@@ -677,3 +708,22 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLikedItems();
   updateLikedCounter();
 });
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.body.classList.toggle('dark-mode', isDark);
+  const toggle = document.getElementById('themeToggle');
+  const icon = toggle?.querySelector('i');
+  if (!toggle || !icon) return;
+
+  toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  toggle.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  icon.classList.toggle('fa-sun', !isDark);
+  icon.classList.toggle('fa-moon', isDark);
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+  localStorage.setItem(LS_THEME, nextTheme);
+  applyTheme(nextTheme);
+}
