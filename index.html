@@ -234,7 +234,12 @@
             </div>
             <div class="mb-3">
               <label class="form-label font-weight-bold">Password</label>
-              <input type="password" class="form-control" id="authPassword" required />
+              <div class="input-group">
+                <input type="password" class="form-control" id="authPassword" required />
+                <button type="button" class="btn btn-outline-secondary" id="toggleAuthPassword" onclick="togglePasswordVisibility()" aria-label="Show password" title="Show password">
+                  <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
             <button type="submit" class="btn btn-red text-uppercase fw-bold w-100 py-2 mb-3" id="authSubmitBtn">
               Sign In

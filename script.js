@@ -504,6 +504,20 @@ function toggleAuthMode() {
   }
 }
 
+function togglePasswordVisibility() {
+  const passwordInput = document.getElementById('authPassword');
+  const toggleButton = document.getElementById('toggleAuthPassword');
+  const icon = toggleButton?.querySelector('i');
+  if (!passwordInput || !toggleButton || !icon) return;
+
+  const isHidden = passwordInput.type === 'password';
+  passwordInput.type = isHidden ? 'text' : 'password';
+  toggleButton.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+  toggleButton.title = isHidden ? 'Hide password' : 'Show password';
+  icon.classList.toggle('fa-eye', !isHidden);
+  icon.classList.toggle('fa-eye-slash', isHidden);
+}
+
 function handleAuth(event) {
   event.preventDefault();
   const authModalEl = document.getElementById("authModal");
