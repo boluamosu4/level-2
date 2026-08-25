@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BobForge | Premium Gym Equipment</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-uppercase fs-3" href="#" onclick="showSection('home')">
+        Bob<span class="text-red">Forge</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-uppercase active" href="#" onclick="showSection('home')">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase" href="#" onclick="showSection('store')">Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase" href="#" onclick="showSection('liked')">Liked <span id="likedCount" class="badge bg-red ms-1">0</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase" href="#" onclick="showSection('dashboard')">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-uppercase" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Support</a>
+          </li>
+        </ul>
+
+        <form class="d-flex me-lg-3 my-2 my-lg-0 role-search" onsubmit="event.preventDefault(); searchProducts();">
+          <input class="form-control me-2 bg-light border-0" type="search" id="searchInput" placeholder="Search gear..." />
+        </form>
+
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-light position-relative border-0" data-bs-toggle="modal" data-bs-target="#cartModal">
+            <i class="fa-solid fa-cart-shopping fs-5"></i>
+            <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-red">0</span>
+          </button>
+          
+          <button class="btn btn-red text-uppercase fw-bold" data-bs-toggle="modal" data-bs-target="#authModal" id="authBtn">
+            Sign In
+          </button>
+          <button class="btn btn-outline-light text-uppercase fw-bold d-none" id="signOutBtn" onclick="handleSignOut()">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="page-section active-section">
+    <!-- Hero Banner -->
+    <div class="hero-section py-5">
+      <div class="container">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="display-3 fw-black text-uppercase mb-3">
+              Elevate Your <span class="text-red">Gains</span>
+            </h1>
+            <p class="lead text-muted mb-4">
+              Commercial-grade gym equipment built for athletes who demand pure strength and durability. Upgrade your training space today.
+            </p>
+            <button class="btn btn-red btn-lg text-uppercase fw-bold px-4 py-3" onclick="showSection('store')">
+              Shop Equipment Now
+            </button>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="hero-image-wrapper mx-auto">
+              <!-- Replace src with your local photo path e.g. src="my-photo.jpg" -->
+              <img id="owner-photo" src="https://via.placeholder.com/450x550/111/E50914?text=YOUR+PHOTO+HERE" alt="BobForge Founder" class="img-fluid rounded shadow-lg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIKED ITEMS SECTION -->
+  <section id="liked" class="page-section py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3">Liked Items</h2>
+      </div>
+
+      <div class="row g-4" id="likedList">
+        <!-- Liked items will be rendered here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE SECTION -->
+  <section id="store" class="page-section py-5">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3">Equipment Store</h2>
+      </div>
+
+      <div class="row g-4" id="productList">
+        <!-- Products generated dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD SECTION -->
+  <section id="dashboard" class="page-section py-5">
+    <div class="container">
+      <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3 mb-4">User Dashboard</h2>
+      <p id="userWelcome" class="lead text-muted mb-4">Welcome, Guest</p>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm text-center p-4">
+            <div class="rounded-circle bg-light text-red d-inline-flex p-3 mx-auto mb-3">
+              <i class="fa-solid fa-box-archive fs-3"></i>
+            </div>
+            <h3 class="fw-bold" id="dashTotalOrders">0</h3>
+            <p class="text-muted mb-0">Total Orders Completed</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm text-center p-4">
+            <div class="rounded-circle bg-light text-red d-inline-flex p-3 mx-auto mb-3">
+              <i class="fa-solid fa-heart fs-3"></i>
+            </div>
+            <h3 class="fw-bold">4</h3>
+            <p class="text-muted mb-0">Saved Wishlist Items</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow-sm text-center p-4">
+            <div class="rounded-circle bg-light text-red d-inline-flex p-3 mx-auto mb-3">
+              <i class="fa-solid fa-shield-halved fs-3"></i>
+            </div>
+            <h3 class="fw-bold">Active</h3>
+            <p class="text-muted mb-0">Membership Status</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm mt-5 p-4">
+        <h4 class="fw-bold text-uppercase mb-3">Recent Transactions</h4>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="transactionHistory">
+              <tr>
+                <td colspan="4" class="text-center text-muted">No transactions found yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART MODAL -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-header-title text-uppercase fw-bold m-0">Your Shopping Cart</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="cartBody">
+          <!-- Cart Items populate via JavaScript -->
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+          <div class="fs-5 fw-bold">
+            Total: <span id="cartTotal" class="text-red">₦0.00</span>
+          </div>
+          <div>
+            <button class="btn btn-secondary text-uppercase" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-red text-uppercase fw-bold" onclick="initiatePayment()">Pay with Paystack</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Remove Confirmation Modal -->
+  <div class="modal fade" id="cartRemoveModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title text-uppercase fw-bold">Remove Item</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-3">
+          <p id="removeModalText" class="mb-3">Are you sure you want to remove this item?</p>
+          <div class="d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-outline-primary" id="moveToLikedBtn">Move to Liked Items</button>
+            <button type="button" class="btn btn-danger" id="confirmRemoveBtn">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTHENTICATION MODAL -->
+  <div class="modal fade" id="authModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title text-uppercase fw-bold" id="authModalTitle">Sign In</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="authForm" onsubmit="handleAuth(event)">
+            <div class="mb-3">
+              <label class="form-label font-weight-bold">Email Address</label>
+              <input type="email" class="form-control" id="authEmail" placeholder="gymrat@bobforge.com" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label font-weight-bold">Password</label>
+              <input type="password" class="form-control" id="authPassword" required />
+            </div>
+            <button type="submit" class="btn btn-red text-uppercase fw-bold w-100 py-2 mb-3" id="authSubmitBtn">
+              Sign In
+            </button>
+          </form>
+          <div class="text-center">
+            <a href="signup.html" class="text-dark text-decoration-underline" id="authToggleLink">
+              Don't have an account? Sign Up
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paystack Inline JS SDK -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  
+  <!-- Contact Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title text-uppercase fw-bold">Contact Support</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="mb-3">Founder: <strong>AMOSUN BOLUWATIFE JAMES</strong></p>
+          <p class="mb-3">Support Email: <a href="mailto:boluamosu4@gmail.com">boluamosu4@gmail.com</a></p>
+          <form id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="mb-3">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="contactName" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Your Email</label>
+              <input type="email" class="form-control" id="contactEmail" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" id="contactMessage" rows="4" required></textarea>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-red">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-5 bg-dark text-white">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div>
+        <div class="fw-bold">BobForge</div>
+        <div class="small">Founder: AMOSUN BOLUWATIFE JAMES</div>
+      </div>
+      <div class="text-end small">
+        <div>Support: <a href="mailto:boluamosu4@gmail.com" class="text-decoration-underline text-white">boluamosu4@gmail.com</a></div>
+        <div class="social-icons mt-2">
+          <a href="https://wa.me/2349012521735" target="_blank" rel="noreferrer" aria-label="WhatsApp" title="WhatsApp: 09012521735" class="me-2">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="tel:+2349035916140" aria-label="Call" title="Call: 09035916140" class="me-2">
+            <i class="fa-solid fa-phone"></i>
+          </a>
+          <a href="https://www.tiktok.com/@bobtizzy4" target="_blank" rel="noreferrer" aria-label="TikTok" title="TikTok: Bobtizzy">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Notification container -->
+  <div id="notificationContainer" class="position-fixed top-0 end-0 p-3" style="z-index:1080;"></div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom Logic Script -->
+  <script src="script.js"></script>
+</body>
+</html>
