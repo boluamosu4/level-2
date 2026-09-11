@@ -40,10 +40,10 @@
             <a class="nav-link text-uppercase" href="#" onclick="showSection('store')">Store</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-uppercase" href="#" onclick="showSection('liked')">Liked</a>
+            <a class="nav-link text-uppercase" href="#" onclick="showSection('liked')">Wishlist</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-uppercase" href="#" onclick="showSection('dashboard')">Dashboard</a>
+            <a class="nav-link text-uppercase" href="#" onclick="openOrderHistory()">Orders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-uppercase" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Support</a>
@@ -59,11 +59,17 @@
             <i class="fa-solid fa-cart-shopping fs-5"></i>
             <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-red">0</span>
           </button>
+          <button class="btn btn-outline-light border-0 text-uppercase" data-bs-toggle="modal" data-bs-target="#trackingModal" aria-label="Track an order" title="Track an order">
+            <i class="fa-solid fa-location-dot me-1"></i><span class="d-none d-xl-inline">Track Order</span>
+          </button>
           
           <button class="btn btn-red text-uppercase fw-bold" data-bs-toggle="modal" data-bs-target="#authModal" id="authBtn">
             Sign In
           </button>
-          <button class="btn btn-outline-light text-uppercase fw-bold d-none" id="signOutBtn" onclick="handleSignOut()">Sign Out</button>
+          <button class="btn btn-outline-light text-uppercase fw-bold d-none navbar-action-btn" data-bs-toggle="modal" data-bs-target="#profileModal" id="profileBtn" onclick="openProfile()">
+            Profile
+          </button>
+          <button class="btn btn-outline-light text-uppercase fw-bold d-none navbar-action-btn" id="signOutBtn" onclick="handleSignOut()">Sign Out</button>
         </div>
       </div>
     </div>
@@ -80,11 +86,21 @@
               Elevate Your <span class="text-red">Gains</span>
             </h1>
             <p class="lead text-muted mb-4">
-              Commercial-grade gym equipment built for athletes who demand pure strength and durability. Upgrade your training space today.
+              Commercial-grade equipment for home gyms, serious athletes, and coaches who expect every session to count. Build a stronger training space with gear selected for dependable performance.
             </p>
-            <button class="btn btn-red btn-lg text-uppercase fw-bold px-4 py-3" onclick="showSection('store')">
+            <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start mb-4">
+              <button class="btn btn-red btn-lg text-uppercase fw-bold px-4 py-3" onclick="showSection('store')">
               Shop Equipment Now
-            </button>
+              </button>
+              <button class="btn btn-outline-dark btn-lg text-uppercase fw-bold px-4 py-3" onclick="document.getElementById('why-bobforge').scrollIntoView({ behavior: 'smooth' })">
+                Why BobForge?
+              </button>
+            </div>
+            <div class="hero-proof d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+              <span><i class="fa-solid fa-circle-check text-red me-1"></i>Quality checked</span>
+              <span><i class="fa-solid fa-truck-fast text-red me-1"></i>Nationwide delivery</span>
+              <span><i class="fa-solid fa-shield-halved text-red me-1"></i>Secure checkout</span>
+            </div>
           </div>
           <div class="col-lg-6 text-center">
             <div class="hero-image-wrapper mx-auto">
@@ -95,17 +111,87 @@
         </div>
       </div>
     </div>
+
+    <div class="trust-strip">
+      <div class="container">
+        <div class="row g-4 text-center">
+          <div class="col-6 col-lg-3"><i class="fa-solid fa-medal text-red fs-4 mb-2"></i><strong>Built to last</strong><span>Reliable gear for repeated training</span></div>
+          <div class="col-6 col-lg-3"><i class="fa-solid fa-truck-fast text-red fs-4 mb-2"></i><strong>Easy delivery</strong><span>Get your equipment where you train</span></div>
+          <div class="col-6 col-lg-3"><i class="fa-solid fa-headset text-red fs-4 mb-2"></i><strong>Human support</strong><span>Real help when you need it</span></div>
+          <div class="col-6 col-lg-3"><i class="fa-solid fa-lock text-red fs-4 mb-2"></i><strong>Protected payment</strong><span>Checkout powered by Paystack</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="why-bobforge" class="py-5 home-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5">
+            <p class="section-kicker">Train with intention</p>
+            <h2 class="display-6 fw-bold mb-3">Your gym should make showing up easier.</h2>
+            <p class="text-muted mb-4">BobForge helps you turn open space into a training environment you can trust. From your first pair of dumbbells to a full commercial setup, every product is chosen around practical strength, safe movement, and long-term value.</p>
+            <button class="btn btn-red text-uppercase fw-bold" onclick="showSection('store')">Browse the collection</button>
+          </div>
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-sm-6"><div class="feature-panel h-100"><i class="fa-solid fa-wrench text-red fs-3 mb-3"></i><h3 class="h5 fw-bold">Equipment that earns its space</h3><p class="text-muted mb-0">Practical pieces selected for home workouts, studios, and high-use training floors.</p></div></div>
+              <div class="col-sm-6"><div class="feature-panel h-100"><i class="fa-solid fa-scale-balanced text-red fs-3 mb-3"></i><h3 class="h5 fw-bold">Clear value at every level</h3><p class="text-muted mb-0">Start small, build steadily, and choose equipment that matches your next milestone.</p></div></div>
+              <div class="col-sm-6"><div class="feature-panel h-100"><i class="fa-solid fa-heart-pulse text-red fs-3 mb-3"></i><h3 class="h5 fw-bold">Made for consistent work</h3><p class="text-muted mb-0">Strength, conditioning, mobility, and recovery tools in one focused store.</p></div></div>
+              <div class="col-sm-6"><div class="feature-panel h-100"><i class="fa-solid fa-comments text-red fs-3 mb-3"></i><h3 class="h5 fw-bold">Support beyond checkout</h3><p class="text-muted mb-0">Need help choosing? Contact the BobForge team before you place an order.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="goal-section py-5">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+          <div><p class="section-kicker">Find your starting point</p><h2 class="fw-bold mb-0">Shop by training goal</h2></div>
+          <button class="btn btn-outline-light text-uppercase fw-bold" onclick="showSection('store')">View all equipment</button>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4"><button class="goal-card w-100 text-start" onclick="selectCategoryAndShop('strength')"><span class="goal-number">01</span><i class="fa-solid fa-dumbbell"></i><h3>Build strength</h3><p>Racks, weights, benches, bars, and the essentials for progressive overload.</p><span class="goal-link">Explore strength <i class="fa-solid fa-arrow-right"></i></span></button></div>
+          <div class="col-md-4"><button class="goal-card w-100 text-start" onclick="selectCategoryAndShop('cardio')"><span class="goal-number">02</span><i class="fa-solid fa-person-running"></i><h3>Improve conditioning</h3><p>Equipment to help you move longer, recover faster, and train with purpose.</p><span class="goal-link">Explore cardio <i class="fa-solid fa-arrow-right"></i></span></button></div>
+          <div class="col-md-4"><button class="goal-card w-100 text-start" onclick="selectCategoryAndShop('accessories')"><span class="goal-number">03</span><i class="fa-solid fa-fire-flame-curved"></i><h3>Upgrade the details</h3><p>Useful accessories that make warm-ups, finishers, and daily sessions better.</p><span class="goal-link">Explore accessories <i class="fa-solid fa-arrow-right"></i></span></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-section py-5">
+      <div class="container">
+        <div class="text-center mb-5"><p class="section-kicker">A simpler way to buy</p><h2 class="fw-bold">From idea to first session</h2></div>
+        <div class="row g-4 text-center">
+          <div class="col-md-4"><div class="step-number">1</div><h3 class="h5 fw-bold">Choose your equipment</h3><p class="text-muted">Compare categories, prices, ratings, and product details in one place.</p></div>
+          <div class="col-md-4"><div class="step-number">2</div><h3 class="h5 fw-bold">Build your cart</h3><p class="text-muted">Save items you like, adjust quantities, and keep your cart ready between visits.</p></div>
+          <div class="col-md-4"><div class="step-number">3</div><h3 class="h5 fw-bold">Checkout securely</h3><p class="text-muted">Pay through Paystack and receive your payment reference immediately.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section py-5">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-4"><p class="section-kicker">Need to know</p><h2 class="fw-bold">Frequently asked questions</h2><p class="text-muted">Still deciding? Our support team is ready to help you choose the right setup.</p><button class="btn btn-red text-uppercase fw-bold" data-bs-toggle="modal" data-bs-target="#contactModal">Contact support</button></div>
+          <div class="col-lg-8"><div class="accordion" id="homeFaq"><div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faqOne">Can I save items for later?</button></h3><div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#homeFaq"><div class="accordion-body">Yes. Sign in and use Add To Wishlist to keep products in your personal wishlist.</div></div></div><div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faqTwo">How do I pay for my order?</button></h3><div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#homeFaq"><div class="accordion-body">Add your equipment to the cart and choose Pay with Paystack. The current project uses Paystack test mode.</div></div></div><div class="accordion-item"><h3 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faqThree">Can I get help choosing equipment?</button></h3><div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#homeFaq"><div class="accordion-body">Yes. Open Support and send your training goal, available space, and approximate budget.</div></div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section py-5">
+      <div class="container"><div class="newsletter-inner row align-items-center g-4"><div class="col-lg-6"><p class="section-kicker">Keep building</p><h2 class="fw-bold mb-2">Get useful gear updates.</h2><p class="mb-0 text-muted">New equipment, training ideas, and occasional offers. No noise, just useful updates.</p></div><div class="col-lg-6"><form class="d-flex flex-column flex-sm-row gap-2" onsubmit="handleNewsletterSignup(event)"><label class="visually-hidden" for="newsletterEmail">Email address</label><input id="newsletterEmail" type="email" class="form-control form-control-lg" placeholder="you@example.com" required /><button class="btn btn-red text-uppercase fw-bold px-4" type="submit">Subscribe</button></form></div></div></div>
+    </section>
   </section>
 
-  <!-- LIKED ITEMS SECTION -->
+  <!-- WISHLIST SECTION -->
   <section id="liked" class="page-section py-5">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3">Liked Items</h2>
+        <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3">Wishlist</h2>
       </div>
 
       <div class="row g-4" id="likedList">
-        <!-- Liked items will be rendered here -->
+        <!-- Wishlist items will be rendered here -->
       </div>
     </div>
   </section>
@@ -117,66 +203,38 @@
         <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3">Equipment Store</h2>
       </div>
 
+      <div class="store-controls row g-2 mb-4" aria-label="Store filters">
+        <div class="col-12 col-md-5">
+          <label class="visually-hidden" for="categoryFilter">Filter by category</label>
+          <select id="categoryFilter" class="form-select">
+            <option value="all">All categories</option>
+            <option value="strength">Strength training</option>
+            <option value="cardio">Cardio equipment</option>
+            <option value="accessories">Training accessories</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-5">
+          <label class="visually-hidden" for="sortProducts">Sort products</label>
+          <select id="sortProducts" class="form-select">
+            <option value="featured">Sort: Featured</option>
+            <option value="price-low">Price: Low to high</option>
+            <option value="price-high">Price: High to low</option>
+            <option value="rating">Highest rated</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-2 d-flex align-items-center">
+          <span id="productResultCount" class="text-muted small"></span>
+        </div>
+      </div>
+
+      <div id="recentProductsWrap" class="recent-products mb-4" hidden>
+        <h5 class="fw-bold text-uppercase mb-3">Recently viewed</h5>
+        <div id="recentProducts" class="row g-3"></div>
+      </div>
+
       <div class="row g-4" id="productList">
         <!-- Products generated dynamically via JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- DASHBOARD SECTION -->
-  <section id="dashboard" class="page-section py-5">
-    <div class="container">
-      <h2 class="fw-bold text-uppercase border-start border-4 border-red ps-3 mb-4">User Dashboard</h2>
-      <p id="userWelcome" class="lead text-muted mb-4">Welcome, Guest</p>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm text-center p-4">
-            <div class="rounded-circle bg-light text-red d-inline-flex p-3 mx-auto mb-3">
-              <i class="fa-solid fa-box-archive fs-3"></i>
-            </div>
-            <h3 class="fw-bold" id="dashTotalOrders">0</h3>
-            <p class="text-muted mb-0">Total Orders Completed</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm text-center p-4">
-            <div class="rounded-circle bg-light text-red d-inline-flex p-3 mx-auto mb-3">
-              <i class="fa-solid fa-heart fs-3"></i>
-            </div>
-            <h3 class="fw-bold">4</h3>
-            <p class="text-muted mb-0">Saved Wishlist Items</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm text-center p-4">
-            <div class="rounded-circle bg-light text-red d-inline-flex p-3 mx-auto mb-3">
-              <i class="fa-solid fa-shield-halved fs-3"></i>
-            </div>
-            <h3 class="fw-bold">Active</h3>
-            <p class="text-muted mb-0">Membership Status</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card border-0 shadow-sm mt-5 p-4">
-        <h4 class="fw-bold text-uppercase mb-3">Recent Transactions</h4>
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th>Reference</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody id="transactionHistory">
-              <tr>
-                <td colspan="4" class="text-center text-muted">No transactions found yet.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
   </section>
@@ -198,8 +256,32 @@
           </div>
           <div>
             <button class="btn btn-secondary text-uppercase" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-red text-uppercase fw-bold" onclick="initiatePayment()">Pay with Paystack</button>
+            <button class="btn btn-red text-uppercase fw-bold" onclick="openCheckout()">Checkout</button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER TRACKING MODAL -->
+  <div class="modal fade" id="trackingModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title text-uppercase fw-bold">Track Your Order</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="text-muted">Enter the payment reference from your order confirmation.</p>
+          <div id="recentOrders" class="recent-orders mb-4" aria-live="polite"></div>
+          <form onsubmit="trackOrder(event)">
+            <label class="form-label" for="trackingReference">Order reference</label>
+            <div class="input-group mb-3">
+              <input id="trackingReference" class="form-control" placeholder="e.g. IV-123456789" required />
+              <button class="btn btn-red text-uppercase fw-bold" type="submit">Track</button>
+            </div>
+          </form>
+          <div id="trackingResult" aria-live="polite"></div>
         </div>
       </div>
     </div>
@@ -217,13 +299,43 @@
           <p id="removeModalText" class="mb-3">Are you sure you want to remove this item?</p>
           <div class="d-flex justify-content-end gap-2">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-outline-primary" id="moveToLikedBtn">Move to Liked Items</button>
+            <button type="button" class="btn btn-outline-primary" id="moveToLikedBtn">Move to Wishlist</button>
             <button type="button" class="btn btn-danger" id="confirmRemoveBtn">Remove</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white"><h5 class="modal-title text-uppercase fw-bold">Checkout</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body p-4">
+          <form id="checkoutForm" onsubmit="submitCheckout(event)">
+            <div class="row g-3">
+              <div class="col-md-6"><label class="form-label" for="checkoutName">Full name</label><input id="checkoutName" class="form-control" required /></div>
+              <div class="col-md-6"><label class="form-label" for="checkoutPhone">Phone number</label><input id="checkoutPhone" class="form-control" type="tel" required /></div>
+              <div class="col-12"><label class="form-label" for="checkoutAddress">Delivery address</label><input id="checkoutAddress" class="form-control" required /></div>
+              <div class="col-md-6"><label class="form-label" for="checkoutCity">City</label><input id="checkoutCity" class="form-control" required /></div>
+              <div class="col-md-6"><label class="form-label" for="checkoutCoupon">Discount code</label><div class="input-group"><input id="checkoutCoupon" class="form-control" placeholder="WELCOME10" /><button class="btn btn-outline-secondary" type="button" onclick="applyCoupon()">Apply</button></div></div>
+              <div class="col-12"><label class="form-label" for="checkoutNotes">Delivery instructions <span class="text-muted">(optional)</span></label><textarea id="checkoutNotes" class="form-control" rows="2"></textarea></div>
+            </div>
+            <div id="checkoutSummary" class="checkout-summary my-4"></div>
+            <div class="d-flex justify-content-end"><button class="btn btn-red text-uppercase fw-bold" type="submit">Continue to Paystack</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAILS MODAL -->
+  <div class="modal fade" id="productDetailsModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content border-0"><div class="modal-header bg-dark text-white"><h5 id="productDetailsTitle" class="modal-title text-uppercase fw-bold">Product Details</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div id="productDetailsBody" class="modal-body p-4"></div></div></div></div>
+
+  <!-- ORDER HISTORY MODAL -->
+  <div class="modal fade" id="orderHistoryModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content border-0"><div class="modal-header bg-dark text-white"><h5 class="modal-title text-uppercase fw-bold">My Orders</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div id="orderHistoryBody" class="modal-body p-4"></div></div></div></div>
+
 
   <!-- AUTHENTICATION MODAL -->
   <div class="modal fade" id="authModal" tabindex="-1">
@@ -253,10 +365,77 @@
             </button>
           </form>
           <div class="text-center">
+            <button type="button" class="btn btn-link btn-sm text-muted" data-bs-toggle="modal" data-bs-target="#resetPasswordModal">Forgot password?</button>
+            <br />
             <a href="signup.html" class="text-dark text-decoration-underline" id="authToggleLink">
               Don't have an account? Sign Up
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASSWORD RESET MODAL -->
+  <div class="modal fade" id="resetPasswordModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content border-0"><div class="modal-header bg-dark text-white"><h5 class="modal-title text-uppercase fw-bold">Reset Password</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body p-4"><form onsubmit="resetPassword(event)"><label class="form-label" for="resetEmail">Account email</label><input id="resetEmail" class="form-control mb-3" type="email" required /><label class="form-label" for="resetNewPassword">New password</label><input id="resetNewPassword" class="form-control mb-3" type="password" minlength="6" required /><button class="btn btn-red w-100 text-uppercase fw-bold" type="submit">Update password</button></form></div></div></div></div>
+
+  <!-- PROFILE MODAL -->
+  <div class="modal fade" id="profileModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content border-0">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title text-uppercase fw-bold">My Profile</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="profile-header mb-4">
+            <div class="profile-avatar-wrap">
+              <img id="profileAvatar" class="profile-avatar" src="" alt="Your profile photo" />
+              <span id="profileInitials" class="profile-initials">BF</span>
+            </div>
+            <div>
+              <h6 id="profileSummaryName" class="fw-bold mb-1">Your profile</h6>
+              <p id="profileSummaryEmail" class="text-muted mb-0"></p>
+            </div>
+          </div>
+          <form id="profileForm" onsubmit="saveProfile(event)">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="profileName">Full name</label>
+                <input id="profileName" class="form-control" type="text" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="profileEmail">Email address</label>
+                <input id="profileEmail" class="form-control" type="email" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="profilePhone">Phone number</label>
+                <input id="profilePhone" class="form-control" type="tel" placeholder="09012345678" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="profileAddress">Delivery address</label>
+                <input id="profileAddress" class="form-control" type="text" placeholder="Your delivery address" />
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="profilePhoto">Profile photo</label>
+                <input id="profilePhoto" class="form-control" type="file" accept="image/png,image/jpeg,image/webp" onchange="previewProfilePhoto(event)" />
+                <div class="form-text">Choose a JPG, PNG, or WebP image up to 2 MB.</div>
+                <button class="btn btn-sm btn-outline-secondary mt-2" type="button" onclick="clearProfilePhoto()">Remove photo</button>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <h6 class="fw-bold text-uppercase mb-3">Change password</h6>
+            <p class="small text-muted">Leave these fields empty if you want to keep your current password.</p>
+            <div class="row g-3">
+              <div class="col-md-4"><label class="form-label" for="currentPassword">Current password</label><input id="currentPassword" class="form-control" type="password" autocomplete="current-password" /></div>
+              <div class="col-md-4"><label class="form-label" for="newPassword">New password</label><input id="newPassword" class="form-control" type="password" autocomplete="new-password" minlength="6" /></div>
+              <div class="col-md-4"><label class="form-label" for="confirmNewPassword">Confirm new password</label><input id="confirmNewPassword" class="form-control" type="password" autocomplete="new-password" minlength="6" /></div>
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+              <button class="btn btn-red text-uppercase fw-bold" type="submit">Save changes</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

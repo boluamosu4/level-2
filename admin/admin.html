@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | BobForge</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <main id="adminLogin" class="login-shell">
+    <section class="login-card">
+      <p class="eyebrow">BobForge private area</p>
+      <h1>Admin sign in</h1>
+      <p class="login-copy">Enter the administrator credentials to open the store dashboard.</p>
+      <form id="adminLoginForm">
+        <label for="adminEmail">Admin email</label>
+        <input id="adminEmail" name="email" type="email" autocomplete="username" required />
+        <label for="adminPassword">Admin password</label>
+        <input id="adminPassword" name="password" type="password" autocomplete="current-password" required />
+        <button class="button button-red login-button" type="submit">Open Dashboard</button>
+        <p id="loginError" class="login-error" role="alert" aria-live="polite"></p>
+      </form>
+      <a class="back-link" href="../index.html">Return to Store</a>
+    </section>
+  </main>
+
+  <div id="adminApp" hidden>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">BobForge control room</p>
+      <h1>Admin Dashboard</h1>
+    </div>
+    <div class="topbar-actions">
+      <span id="lastUpdated" class="last-updated"></span>
+      <button id="refreshButton" class="button button-light" type="button">Refresh</button>
+      <button id="logoutButton" class="button button-light" type="button">Log out</button>
+      <a class="button button-red" href="../index.html">Back to Store</a>
+    </div>
+  </header>
+
+  <main class="dashboard-shell">
+    <section class="notice" aria-label="Dashboard data notice">
+      <strong>Local dashboard:</strong>
+      This page reads the current browser's local data. Customer passwords are never displayed.
+    </section>
+
+    <section class="stats-grid" aria-label="Store statistics">
+      <article class="stat-card">
+        <span class="stat-label">Registered customers</span>
+        <strong id="userCount" class="stat-value">0</strong>
+        <span class="stat-detail">Accounts saved in this browser</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Catalog products</span>
+        <strong id="productCount" class="stat-value">24</strong>
+        <span class="stat-detail">Products available in the store</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Wishlist items</span>
+        <strong id="wishlistCount" class="stat-value">0</strong>
+        <span class="stat-detail">Saved wishlist entries</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Rated products</span>
+        <strong id="ratedProductCount" class="stat-value">0</strong>
+        <span class="stat-detail">Products with saved ratings</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Orders</span>
+        <strong id="orderCount" class="stat-value">0</strong>
+        <span class="stat-detail">Saved customer orders</span>
+      </article>
+      <article class="stat-card">
+        <span class="stat-label">Sales value</span>
+        <strong id="salesTotal" class="stat-value stat-money">₦0</strong>
+        <span class="stat-detail">Successful local transactions</span>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Customer directory</p>
+            <h2>Registered customers</h2>
+          </div>
+          <span id="currentUserBadge" class="status-badge">No active session</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Account ID</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="customerTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="panel full-panel">
+        <div class="panel-heading"><div><p class="eyebrow">Fulfilment</p><h2>Customer orders</h2></div><span class="status-badge">Admin only</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Reference</th><th>Customer</th><th>Total</th><th>Status</th><th>Action</th></tr></thead><tbody id="orderTableBody"></tbody></table></div>
+      </article>
+
+      <article class="panel activity-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">System status</p>
+            <h2>Store activity</h2>
+          </div>
+        </div>
+        <div class="activity-list">
+          <div class="activity-row">
+            <span>Orders</span>
+            <strong class="warning-text">Session only</strong>
+          </div>
+          <div class="activity-row">
+            <span>Payments</span>
+            <strong class="warning-text">Paystack test mode</strong>
+          </div>
+          <div class="activity-row">
+            <span>Data source</span>
+            <strong>localStorage</strong>
+          </div>
+        </div>
+        <p class="panel-note">Order history is currently held in memory by the storefront and will reset when the page is refreshed.</p>
+      </article>
+    </section>
+  </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -88,6 +88,44 @@ body.dark-mode .table {
   color: var(--gym-white);
 }
 
+/* Compact navigation controls */
+.navbar .navbar-brand {
+  font-size: 1.45rem !important;
+}
+
+.navbar .nav-link {
+  padding-right: 0.55rem !important;
+  padding-left: 0.55rem !important;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+}
+
+.navbar .form-control,
+.navbar .navbar-action-btn,
+.navbar #authBtn,
+.navbar [data-bs-target="#trackingModal"] {
+  font-size: 0.74rem;
+}
+
+.navbar .form-control {
+  min-height: 32px;
+  padding: 0.35rem 0.6rem;
+}
+
+.navbar .navbar-action-btn,
+.navbar #authBtn {
+  padding: 0.42rem 0.7rem;
+}
+
+.navbar .navbar-action-btn {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.navbar .navbar-nav {
+  gap: 0.1rem;
+}
+
 /* Hero Component Styling */
 .hero-section {
   background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
@@ -113,6 +151,234 @@ body.dark-mode .hero-section {
   height: auto;
   object-fit: cover;
   display: block;
+}
+
+.hero-proof {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.trust-strip {
+  padding: 2rem 0;
+  background: var(--surface-muted);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.trust-strip strong,
+.trust-strip span {
+  display: block;
+}
+
+.trust-strip strong {
+  font-size: 0.95rem;
+}
+
+.trust-strip span {
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.home-section,
+.steps-section,
+.faq-section {
+  background: var(--page-background);
+}
+
+.section-kicker {
+  margin-bottom: 0.55rem;
+  color: var(--gym-red);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.feature-panel {
+  padding: 1.5rem;
+  background: var(--surface-muted);
+  border-left: 3px solid var(--gym-red);
+}
+
+.feature-panel h3 {
+  font-size: 1.05rem;
+}
+
+.feature-panel p,
+.goal-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.goal-section {
+  background: #171717;
+  color: #fff;
+}
+
+.goal-card {
+  position: relative;
+  min-height: 280px;
+  padding: 1.75rem;
+  color: #fff;
+  background: #242424;
+  border: 1px solid #414141;
+  border-top: 4px solid var(--gym-red);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.goal-card:hover {
+  background: #303030;
+  transform: translateY(-4px);
+}
+
+.goal-card > i {
+  display: block;
+  margin: 1.5rem 0 1rem;
+  color: #ffd700;
+  font-size: 2rem;
+}
+
+.goal-card h3 {
+  font-size: 1.4rem;
+}
+
+.goal-card p {
+  color: #c6c6c6;
+}
+
+.goal-number {
+  color: #a5a5a5;
+  font: 700 0.78rem Arial, sans-serif;
+}
+
+.goal-link {
+  color: #ffd700;
+  font: 700 0.78rem Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+  color: #fff;
+  background: var(--gym-red);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.newsletter-section {
+  background: var(--surface-muted);
+  border-top: 1px solid var(--border-color);
+}
+
+.newsletter-inner {
+  padding: 2rem;
+  background: var(--surface-background);
+  border-left: 5px solid var(--gym-red);
+}
+
+.order-status-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+  background: var(--surface-muted);
+  border-left: 4px solid var(--gym-red);
+}
+
+.order-status-card strong {
+  margin-bottom: 0.25rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  display: grid;
+  width: 76px;
+  height: 76px;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  background: var(--gym-red);
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.profile-avatar,
+.profile-initials {
+  grid-area: 1 / 1;
+}
+
+.profile-avatar {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar.has-image {
+  display: block;
+}
+
+.profile-initials {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.profile-avatar.has-image + .profile-initials {
+  display: none;
+}
+
+.recent-order-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem;
+  background: var(--surface-muted);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--gym-red);
+}
+
+.recent-order-card + .recent-order-card {
+  margin-top: 0.5rem;
+}
+
+.recent-order-card strong,
+.recent-order-card span {
+  display: block;
+}
+
+.recent-order-card strong {
+  font-size: 0.82rem;
+}
+
+.recent-order-card span {
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.accordion-item,
+.accordion-button {
+  background-color: var(--surface-background);
+  color: inherit;
+  border-color: var(--border-color);
+}
+
+body.dark-mode .accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: var(--surface-muted);
 }
 
 /* Single Page Section Switcher Controls */

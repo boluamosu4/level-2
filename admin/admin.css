@@ -1,0 +1,376 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #171717;
+  --muted: #6b6b6b;
+  --line: #e6e1db;
+  --paper: #f6f3ef;
+  --surface: #ffffff;
+  --red: #e50914;
+  --red-dark: #b80710;
+  --gold: #c59b32;
+  --green: #27734a;
+  --yellow: #8c6510;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.login-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(circle at top right, #3a3027 0, var(--ink) 42%, #090909 100%);
+}
+
+.login-card {
+  width: min(100%, 430px);
+  padding: 36px;
+  background: var(--surface);
+  border-top: 5px solid var(--red);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.login-card h1 {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: 2.4rem;
+}
+
+.login-copy {
+  margin-bottom: 26px;
+  color: var(--muted);
+  font: 0.9rem/1.5 Arial, sans-serif;
+}
+
+.login-card label {
+  display: block;
+  margin: 16px 0 6px;
+  color: var(--ink);
+  font: 700 0.76rem Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  color: var(--ink);
+  background: #fff;
+  font: 1rem Arial, sans-serif;
+}
+
+.login-card input:focus {
+  outline: 2px solid rgba(229, 9, 20, 0.25);
+  border-color: var(--red);
+}
+
+.login-button {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.login-error {
+  min-height: 20px;
+  margin: 12px 0 0;
+  color: var(--red-dark);
+  font: 0.82rem Arial, sans-serif;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: var(--muted);
+  font: 0.82rem Arial, sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px clamp(20px, 5vw, 72px);
+  color: #fff;
+  background: var(--ink);
+  border-bottom: 4px solid var(--red);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--gold);
+  font: 700 0.72rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(2rem, 5vw, 3.7rem);
+  line-height: 0.95;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 1.55rem;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.last-updated {
+  color: #d5d0c9;
+  font: 0.78rem Arial, sans-serif;
+}
+
+.button {
+  display: inline-block;
+  padding: 11px 15px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  font: 700 0.78rem Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.button-light {
+  color: #fff;
+  background: transparent;
+  border-color: #777;
+}
+
+.button-light:hover {
+  background: #2d2d2d;
+}
+
+.button-red {
+  color: #fff;
+  background: var(--red);
+}
+
+.button-red:hover {
+  background: var(--red-dark);
+}
+
+.dashboard-shell {
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 34px 0 60px;
+}
+
+.notice {
+  margin-bottom: 22px;
+  padding: 15px 18px;
+  color: #604a12;
+  background: #fff8df;
+  border-left: 5px solid var(--gold);
+  font: 0.92rem/1.5 Arial, sans-serif;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.stat-card,
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(44, 35, 26, 0.05);
+}
+
+.stat-card {
+  min-height: 158px;
+  padding: 22px;
+  border-top: 4px solid var(--red);
+}
+
+.stat-label,
+.stat-detail,
+table,
+.status-badge,
+.activity-list,
+.panel-note {
+  font-family: Arial, sans-serif;
+}
+
+.stat-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.83rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 2.7rem;
+  line-height: 1;
+}
+
+.stat-detail {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.75fr);
+  gap: 22px;
+}
+
+.panel {
+  min-width: 0;
+  padding: 24px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  padding: 7px 10px;
+  color: var(--green);
+  background: #edf7f0;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+th,
+td {
+  padding: 14px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+td:first-child {
+  font-weight: 700;
+}
+
+.empty-row {
+  color: var(--muted);
+  text-align: center;
+}
+
+.activity-list {
+  border-top: 1px solid var(--line);
+}
+
+.activity-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+.warning-text {
+  color: var(--yellow);
+  text-align: right;
+}
+
+.panel-note {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .topbar-actions {
+    justify-content: flex-start;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .dashboard-shell {
+    width: min(100% - 24px, 1400px);
+    padding-top: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .panel-heading {
+    flex-direction: column;
+  }
+
+  .last-updated {
+    width: 100%;
+  }
+}
